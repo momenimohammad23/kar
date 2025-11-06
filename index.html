@@ -1,55 +1,58 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>فرم همکاری در منزل</title>
-<style>
-body { font-family: "Vazir", sans-serif; background: #f2f2f2; margin:0; padding:20px; }
-form { background:#fff; padding:20px; border-radius:15px; max-width:500px; margin:auto; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
-h2 { text-align:center; color:#333; margin-bottom:20px; }
-label { display:block; margin-top:10px; color:#444; font-weight:bold; }
-input, textarea, select, button { width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #ccc; font-family:inherit; }
-textarea { resize:vertical; }
-button { background:#28a745; color:#fff; border:none; font-size:16px; margin-top:15px; cursor:pointer; }
-button:hover { background:#218838; }
-</style>
+  <meta charset="UTF-8">
+  <title>فرم ارسال اطلاعات</title>
+  <style>
+    body { font-family: Tahoma, sans-serif; direction: rtl; padding: 20px; background: #f7f7f7; }
+    form { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea, select, button { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #4CAF50; color: white; border: none; cursor: pointer; font-size: 16px; }
+    button:disabled { background: #888; cursor: not-allowed; }
+  </style>
 </head>
 <body>
+  <form action="https://script.google.com/macros/s/AKfycbxPTgjX_2-85byk-9nCKgCLl9rBqZ1G3PEzmw4-mTixFC3bzDap6duRNsTnwUfu1lDF/exec" method="post" enctype="multipart/form-data">
+    <label>نام</label>
+    <input type="text" name="name" required>
 
-<form action="https://script.google.com/macros/s/AKfycbxPTgjX_2-85byk-9nCKgCLl9rBqZ1G3PEzmw4-mTixFC3bzDap6duRNsTnwUfu1lDF/exec" method="post" enctype="multipart/form-data">
-  <h2>فرم همکاری در منزل</h2>
+    <label>شماره تماس</label>
+    <input type="text" name="phone" required>
 
-  <label>نام و نام خانوادگی:</label>
-  <input type="text" name="name" required>
+    <label>توضیحات</label>
+    <textarea name="desc" required></textarea>
 
-  <label>شماره تماس:</label>
-  <input type="tel" name="phone" required>
+    <label>محل زندگی</label>
+    <input type="text" name="address" required>
 
-  <label>توضیحات:</label>
-  <textarea name="desc" rows="3" placeholder="مثلاً تجربه خیاطی، بسته‌بندی، نقاشی و..." required></textarea>
+    <label>تاریخ تولد</label>
+    <input type="date" name="birth" required>
 
-  <label>محل زندگی (شهر - منطقه - خیابان):</label>
-  <input type="text" name="address" required>
+    <label>جنسیت</label>
+    <select name="gender" required>
+      <option value="">انتخاب کنید</option>
+      <option value="مرد">مرد</option>
+      <option value="زن">زن</option>
+    </select>
 
-  <label>تاریخ تولد:</label>
-  <input type="date" name="birth" required>
+    <label>امکانات (اختیاری)</label>
+    <input type="text" name="tools">
 
-  <label>جنسیت:</label>
-  <select name="gender" required>
-    <option value="">انتخاب کنید</option>
-    <option value="خانم">خانم</option>
-    <option value="آقا">آقا</option>
-  </select>
+    <label>نمونه کارها (چند عکس، اختیاری)</label>
+    <input type="file" name="sample" multiple>
 
-  <label>امکانات (مثلاً چرخ خیاطی، ابزار بسته‌بندی...):</label>
-  <input type="text" name="tools">
+    <button type="submit" id="submitBtn">ارسال اطلاعات</button>
+  </form>
 
-  <label>عکس نمونه کارها:</label>
-  <input type="file" name="sample" multiple accept="image/*">
+  <script>
+    const form = document.getElementById('myForm');
+    const btn = document.getElementById('submitBtn');
 
-  <button type="submit">ارسال</button>
-</form>
-
+    form.addEventListener('submit', function() {
+      btn.disabled = true;
+      btn.textContent = 'در حال ارسال...';
+    });
+  </script>
 </body>
 </html>
