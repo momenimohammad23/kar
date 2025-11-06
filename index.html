@@ -7,7 +7,7 @@
 <style>
   body {
     font-family: "Vazir", sans-serif;
-    background: #f8f9fa;
+    background: #f2f2f2;
     margin: 0;
     padding: 20px;
   }
@@ -15,37 +15,46 @@
     background: #fff;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     max-width: 500px;
     margin: auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
-  h2 { text-align: center; color: #333; margin-bottom: 20px; }
-  label { display: block; margin-top: 10px; color: #444; }
-  input, textarea, select {
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+  }
+  input, textarea, select, button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
     border-radius: 8px;
+    border: 1px solid #ccc;
     font-family: inherit;
   }
+  textarea { resize: vertical; }
   button {
-    width: 100%;
     background: #28a745;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 12px;
-    margin-top: 15px;
-    border-radius: 8px;
     font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
   }
   button:hover { background: #218838; }
 </style>
 </head>
 <body>
-<form id="workForm">
+
+<form action="YOUR_WEB_APP_URL" method="post" enctype="multipart/form-data">
   <h2>فرم همکاری در منزل</h2>
-  
+
   <label>نام و نام خانوادگی:</label>
   <input type="text" name="name" required>
 
@@ -72,23 +81,10 @@
   <input type="text" name="tools">
 
   <label>عکس نمونه کارها:</label>
-  <input type="file" name="sample" id="sample" multiple accept="image/*">
+  <input type="file" name="sample" multiple accept="image/*">
 
   <button type="submit">ارسال</button>
 </form>
 
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxPTgjX_2-85byk-9nCKgCLl9rBqZ1G3PEzmw4-mTixFC3bzDap6duRNsTnwUfu1lDF/exec";
-
-document.getElementById('workForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-
-  fetch(scriptURL, { method: 'POST', body: formData })
-    .then(() => alert("✅ اطلاعات با موفقیت ارسال شد"))
-    .catch(err => alert("❌ خطا در ارسال اطلاعات"));
-});
-</script>
 </body>
 </html>
