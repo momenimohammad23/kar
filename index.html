@@ -1,112 +1,95 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>فرم همکاری در منزل</title>
-<style>
-body {
-  font-family: sans-serif;
-  background: #f6f7f9;
-  padding: 20px;
-  color: #222;
-}
-form {
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-h2 {
-  text-align: center;
-  color: #333;
-}
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
-}
-button {
-  width: 100%;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-button:hover {
-  background: #45a049;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>فرم همکاری در منزل</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fafafa;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 { text-align: center; color: #333; }
+    form {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    input, textarea, select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      background: #00897b;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #00796b; }
+  </style>
 </head>
 <body>
-
-<form id="jobForm">
   <h2>فرم همکاری در منزل</h2>
-  
-  <label>نام</label>
-  <input type="text" name="name" required>
-  
-  <label>شماره تماس</label>
-  <input type="tel" name="phone" required pattern="[0-9]{10,}">
-  
-  <label>توضیحات</label>
-  <textarea name="desc" required placeholder="کارهایی که بلدید یا تجربه دارید..."></textarea>
-  
-  <label>محل زندگی (شهر - منطقه - خیابان)</label>
-  <input type="text" name="address" required>
-  
-  <label>تاریخ تولد</label>
-  <input type="date" name="birth" required>
-  
-  <label>جنسیت</label>
-  <select name="gender" required>
-    <option value="">انتخاب کنید</option>
-    <option>زن</option>
-    <option>مرد</option>
-  </select>
-  
-  <label>امکانات (مثلاً چرخ خیاطی)</label>
-  <input type="text" name="tools" required>
-  
-  <label>عکس نمونه کارها (آپلود در سایت آپلود و لینک را وارد کنید)</label>
-  <input type="url" name="sample" placeholder="لینک عکس‌ها" required>
-  
-  <button type="submit">ارسال فرم</button>
-</form>
+  <form id="myForm">
+    <label>نام:</label>
+    <input type="text" name="name">
 
-<script>
-document.getElementById("jobForm").addEventListener("submit", function(e){
-  e.preventDefault();
+    <label>شماره تماس:</label>
+    <input type="tel" name="phone">
 
-  const data = Object.fromEntries(new FormData(this).entries());
-  
-  fetch("https://script.google.com/macros/s/AKfycbxPTgjX_2-85byk-9nCKgCLl9rBqZ1G3PEzmw4-mTixFC3bzDap6duRNsTnwUfu1lDF/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(res => res.text()).then(txt => {
-    if (txt === "OK") {
-      alert("✅ فرم شما با موفقیت ارسال شد. با شما تماس گرفته خواهد شد.");
-      document.getElementById("jobForm").reset();
-    } else {
-      alert("❌ خطا در ارسال فرم. لطفاً دوباره تلاش کنید.");
-    }
-  });
-});
-</script>
+    <label>توضیحات:</label>
+    <textarea name="desc" rows="3"></textarea>
 
+    <label>محل زندگی (شهر - منطقه - خیابان):</label>
+    <input type="text" name="address">
+
+    <label>تاریخ تولد:</label>
+    <input type="date" name="birthday">
+
+    <label>جنسیت:</label>
+    <select name="gender">
+      <option value="">انتخاب کنید</option>
+      <option value="زن">زن</option>
+      <option value="مرد">مرد</option>
+    </select>
+
+    <label>امکانات (مثلاً چرخ خیاطی):</label>
+    <input type="text" name="tools">
+
+    <label>عکس نمونه‌کارها:</label>
+    <input type="file" name="photos" multiple accept="image/*">
+
+    <button type="submit">ارسال فرم</button>
+  </form>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxPTgjX_2-85byk-9nCKgCLl9rBqZ1G3PEzmw4-mTixFC3bzDap6duRNsTnwUfu1lDF/exec";
+
+    document.getElementById("myForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const res = await fetch(scriptURL, { method: "POST", body: formData });
+      if (res.ok) {
+        alert("فرم با موفقیت ارسال شد 🌸");
+        form.reset();
+      } else {
+        alert("خطا در ارسال فرم، لطفاً دوباره تلاش کنید.");
+      }
+    });
+  </script>
 </body>
 </html>
